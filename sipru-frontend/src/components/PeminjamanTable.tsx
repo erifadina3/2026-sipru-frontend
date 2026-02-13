@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react"
 import type { Peminjaman } from "../types/Peminjaman"
-import StatusBadge from "./StatusBadge"
 import { deletePeminjaman } from "../services/peminjamanService"
+import { updatePeminjaman } from "../services/peminjamanService"
 import { Link } from "react-router-dom"
 
 interface Props {
@@ -126,7 +126,36 @@ export default function PeminjamanTable({ data }: Props) {
                     {item.keperluan}
                   </td>
                   <td className="border px-4 py-2">
-                    <StatusBadge status={item.status} />
+                    <select
+                      value={item.status}
+                      onChange={async (e) => {
+                        const newStatus = Number(e.target.value)
+
+                        try {
+                          await updatePeminjaman(item.id, {
+                            ...item,
+                            status: newStatus,
+                          })
+
+                          window.location.reload()
+                        } catch {
+                          alert("Gagal update status")
+                        }
+                      }}
+                      className="border rounded px-2 py-1 text-sm"
+                      style={{
+                        backgroundColor:
+                          item.status === 1
+                            ? "green"
+                            : item.status === 2
+                            ? "red"
+                            : "orange",
+                      }}
+                    >
+                      <option value={0}>Menunggu</option>
+                      <option value={1}>Disetujui</option>
+                      <option value={2}>Ditolak</option>
+                    </select>
                   </td>
                   <td className="border px-4 py-2">
                     <div className="flex gap-3">
