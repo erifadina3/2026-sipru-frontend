@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { getPeminjaman } from "../services/peminjamanService"
 import type { Peminjaman } from "../types/Peminjaman"
@@ -41,7 +42,11 @@ export default function PeminjamanList() {
   return (
     <div className="p-6">
       <h1 className="text-xl font-bold mb-4">Daftar Peminjaman</h1>
-
+           <Link
+            to="/tambah"
+            className="bg-blue-600 text-white px-4 py-2 rounded">
+            + Tambah
+          </Link>
       <div className="mt-4">
         <PeminjamanTable data={data} />
       </div>
