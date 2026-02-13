@@ -9,15 +9,42 @@ export default function PeminjamanList() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    getPeminjaman()
-      .then(res => setData(res))
-      .catch(() => setError("Gagal mengambil data"))
-      .finally(() => setLoading(false))
+    const fetchData = async () => {
+      try {
+        const res = await getPeminjaman()
+        setData(res)
+      } catch (err) {
+        console.error("FETCH ERROR:", err)
+        setError("Gagal mengambil data")
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
   }, [])
 
-  if (loading) return <p>Loading data...</p>
+  if (loading)
+    return (
+      <div className="p-6 text-gray-500 animate-pulse">
+        Loading data...
+      </div>
+    )
 
-  if (error) return <p style={{ color: "red" }}>{error}</p>
+  if (error)
+    return (
+      <div className="p-6 text-red-600 font-medium">
+        {error}
+      </div>
+    )
 
-  return <PeminjamanTable data={data} />
+  return (
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">Daftar Peminjaman</h1>
+
+      <div className="mt-4">
+        <PeminjamanTable data={data} />
+      </div>
+    </div>
+  )
 }

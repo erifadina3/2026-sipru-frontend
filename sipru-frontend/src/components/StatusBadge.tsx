@@ -4,7 +4,7 @@ interface Props {
 
 export default function StatusBadge({ status }: Props) {
   const map: Record<number, string> = {
-    0: "Pending",
+    0: "Menunggu",
     1: "Disetujui",
     2: "Ditolak"
   }

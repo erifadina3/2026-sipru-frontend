@@ -6,8 +6,10 @@ export async function getPeminjaman(): Promise<Peminjaman[]> {
   const res = await fetch(BASE_URL)
 
   if (!res.ok) {
+    const text = await res.text()
+    console.error("API ERROR:", text)
     throw new Error("Failed fetch data")
   }
 
-  return res.json()
+  return (await res.json()) as Peminjaman[]
 }

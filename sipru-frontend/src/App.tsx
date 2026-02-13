@@ -5,7 +5,7 @@ function App() {
   return (
     <MainLayout>
       <h1 className="text-2xl font-semibold mb-4">
-        Sistem Peminjaman Ruangan
+        Sistem Peminjaman Ruangan Kampus 
       </h1>
 
       <PeminjamanList />
