@@ -13,3 +13,22 @@ export async function getPeminjaman(): Promise<Peminjaman[]> {
 
   return (await res.json()) as Peminjaman[]
 }
+
+export async function createPeminjaman(data: Omit<Peminjaman,"id">) {
+  const res = await fetch(BASE_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  })
+
+  if (!res.ok) {
+    const text = await res.text()
+    console.error(text)
+    throw new Error("Failed create data")
+  }
+
+  return res.json()
+}
+
