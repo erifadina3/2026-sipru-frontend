@@ -13,3 +13,12 @@ export async function getPeminjaman(): Promise<Peminjaman[]> {
 
   return (await res.json()) as Peminjaman[]
 }
+
+export async function getPeminjamanById(id: number): Promise<Peminjaman> {
+  const res = await fetch(`${BASE_URL}/${id}`)
+
+  if (!res.ok) throw new Error("Failed fetch detail")
+
+  return res.json()
+}
+
