@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react"
 import type { Peminjaman } from "../types/Peminjaman"
 import StatusBadge from "./StatusBadge"
+import { deletePeminjaman } from "../services/peminjamanService"
 import { Link } from "react-router-dom"
 
 interface Props {
@@ -142,6 +143,23 @@ export default function PeminjamanTable({ data }: Props) {
                       >
                         Edit
                       </Link>
+
+                      <button
+                        onClick={async () => {
+                        const confirmDelete = confirm("Yakin ingin menghapus data ini?")
+                        if (!confirmDelete) return
+
+                        try {
+                        await deletePeminjaman(item.id)
+                        window.location.reload()
+                        } catch {
+                         alert("Gagal menghapus data")
+                        }
+                        }}
+                         className="text-red-600 hover:underline"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>

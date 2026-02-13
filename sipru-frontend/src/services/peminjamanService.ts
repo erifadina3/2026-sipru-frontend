@@ -49,6 +49,7 @@ export async function createPeminjaman(
   return res.json()
 }
 
+// UPDATE
 export async function updatePeminjaman(
   id: number,
   data: Partial<Peminjaman>
@@ -62,3 +63,17 @@ export async function updatePeminjaman(
   if (!res.ok) throw new Error("Update gagal")
 }
 
+// DELETE
+export async function deletePeminjaman(id: number) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "DELETE",
+  })
+
+  if (!res.ok) {
+    const text = await res.text()
+    console.error("API ERROR:", text)
+    throw new Error("Failed delete data")
+  }
+
+  return true
+}
