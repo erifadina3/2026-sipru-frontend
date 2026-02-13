@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react"
 import type { Peminjaman } from "../types/Peminjaman"
 import StatusBadge from "./StatusBadge"
+import { Link } from "react-router-dom"
 
 interface Props {
   data: Peminjaman[]
@@ -82,7 +83,7 @@ export default function PeminjamanTable({ data }: Props) {
         <table className="w-full text-sm border border-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              {["Nama","Ruangan","Mulai","Selesai","Keperluan","Status"].map(h => (
+              {["Nama","Ruangan","Mulai","Selesai","Keperluan","Status","Aksi"].map(h => (
                 <th key={h} className="px-4 py-3 border">{h}</th>
               ))}
             </tr>
@@ -105,6 +106,13 @@ export default function PeminjamanTable({ data }: Props) {
                   <td className="border px-4 py-2">{item.keperluan}</td>
                   <td className="border px-4 py-2">
                     <StatusBadge status={item.status}/>
+                  </td>
+                  <td>
+                    <Link
+                      to={`/detail/${item.id}`}
+                      className="text-blue-600 hover:underline">
+                       Detail
+                    </Link>
                   </td>
                 </tr>
               ))
