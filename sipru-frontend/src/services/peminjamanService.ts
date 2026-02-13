@@ -48,3 +48,17 @@ export async function createPeminjaman(
 
   return res.json()
 }
+
+export async function updatePeminjaman(
+  id: number,
+  data: Partial<Peminjaman>
+) {
+  const res = await fetch(`${BASE_URL}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  })
+
+  if (!res.ok) throw new Error("Update gagal")
+}
+

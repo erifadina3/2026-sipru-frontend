@@ -23,7 +23,7 @@ export default function PeminjamanTable({ data }: Props) {
 
   // FILTER + SEARCH
   const filtered = useMemo(() => {
-    return data.filter(item => {
+    return data.filter((item) => {
       const matchSearch =
         item.namaPeminjam.toLowerCase().includes(search.toLowerCase()) ||
         item.namaRuangan.toLowerCase().includes(search.toLowerCase())
@@ -55,7 +55,7 @@ export default function PeminjamanTable({ data }: Props) {
           type="text"
           placeholder="Cari nama / ruangan..."
           value={search}
-          onChange={e => {
+          onChange={(e) => {
             setSearch(e.target.value)
             setPage(1)
           }}
@@ -65,7 +65,7 @@ export default function PeminjamanTable({ data }: Props) {
         {/* FILTER */}
         <select
           value={statusFilter}
-          onChange={e => {
+          onChange={(e) => {
             setStatusFilter(e.target.value)
             setPage(1)
           }}
@@ -83,8 +83,18 @@ export default function PeminjamanTable({ data }: Props) {
         <table className="w-full text-sm border border-gray-200">
           <thead className="bg-gray-100">
             <tr>
-              {["Nama","Ruangan","Mulai","Selesai","Keperluan","Status","Aksi"].map(h => (
-                <th key={h} className="px-4 py-3 border">{h}</th>
+              {[
+                "Nama",
+                "Ruangan",
+                "Mulai",
+                "Selesai",
+                "Keperluan",
+                "Status",
+                "Aksi",
+              ].map((h) => (
+                <th key={h} className="px-4 py-3 border">
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
@@ -92,27 +102,47 @@ export default function PeminjamanTable({ data }: Props) {
           <tbody>
             {paginated.length === 0 ? (
               <tr>
-                <td colSpan={6} className="text-center py-10 text-gray-400">
+                <td colSpan={7} className="text-center py-10 text-gray-400">
                   Tidak ada data
                 </td>
               </tr>
             ) : (
-              paginated.map(item => (
+              paginated.map((item) => (
                 <tr key={item.id} className="hover:bg-gray-50">
-                  <td className="border px-4 py-2">{item.namaPeminjam}</td>
-                  <td className="border px-4 py-2">{item.namaRuangan}</td>
-                  <td className="border px-4 py-2">{formatDate(item.tanggalMulai)}</td>
-                  <td className="border px-4 py-2">{formatDate(item.tanggalSelesai)}</td>
-                  <td className="border px-4 py-2">{item.keperluan}</td>
                   <td className="border px-4 py-2">
-                    <StatusBadge status={item.status}/>
+                    {item.namaPeminjam}
                   </td>
-                  <td>
-                    <Link
-                      to={`/detail/${item.id}`}
-                      className="text-blue-600 hover:underline">
-                       Detail
-                    </Link>
+                  <td className="border px-4 py-2">
+                    {item.namaRuangan}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {formatDate(item.tanggalMulai)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {formatDate(item.tanggalSelesai)}
+                  </td>
+                  <td className="border px-4 py-2">
+                    {item.keperluan}
+                  </td>
+                  <td className="border px-4 py-2">
+                    <StatusBadge status={item.status} />
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="flex gap-3">
+                      <Link
+                        to={`/detail/${item.id}`}
+                        className="text-blue-600 hover:underline"
+                      >
+                        Detail
+                      </Link>
+
+                      <Link
+                        to={`/edit/${item.id}`}
+                        className="text-yellow-600 hover:underline"
+                      >
+                        Edit
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               ))
@@ -126,7 +156,7 @@ export default function PeminjamanTable({ data }: Props) {
         <div className="flex justify-center gap-2 mt-5">
           <button
             disabled={page === 1}
-            onClick={() => setPage(p => p - 1)}
+            onClick={() => setPage((p) => p - 1)}
             className="px-3 py-1 border rounded disabled:opacity-40"
           >
             Prev
@@ -138,7 +168,7 @@ export default function PeminjamanTable({ data }: Props) {
 
           <button
             disabled={page === totalPages}
-            onClick={() => setPage(p => p + 1)}
+            onClick={() => setPage((p) => p + 1)}
             className="px-3 py-1 border rounded disabled:opacity-40"
           >
             Next
