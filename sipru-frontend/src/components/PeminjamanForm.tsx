@@ -40,7 +40,7 @@ export default function PeminjamanForm({ onSubmit }: Props) {
       <input type="datetime-local" name="tanggalSelesai" onChange={handleChange} className="input" />
       <textarea name="keperluan" placeholder="Keperluan" onChange={handleChange} className="input" />
 
-      <button className="bg-blue-600 text-white px-4 py-2 rounded">
+      <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
         Simpan
       </button>
     </form>
