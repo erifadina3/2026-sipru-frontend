@@ -1,14 +1,19 @@
 # Changelog
 
-## [Unreleased]
+## [v1.0.0] - 2026-02-16
 
 ### Added
-- Initial frontend repository setup
-- Setup React + TypeScript project
-- Install TailwindCSS
-- Create base layout structure
-- Implement CRUD Peminjaman feature
-- Add status dropdown in table
-- Implement inline status update
-- Add search & filter functionality
-- Improve UI layout and action buttons
+- Detail Peminjaman page
+- Status badge visualization (Menunggu, Disetujui, Ditolak)
+- Editable status dropdown in Edit page
+- Back navigation button in detail & edit pages
+
+### Improved
+- Sync status enum with backend (0 = Menunggu, 1 = Disetujui, 2 = Ditolak)
+- Enhanced layout styling and UI consistency
+- Improved form spacing and card structure
+- Refined MainLayout structure
+
+### Fixed
+- Status mismatch between backend and frontend
+- Incorrect status mapping causing "Tidak diketahui"
