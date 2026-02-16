@@ -95,7 +95,7 @@ export default function PeminjamanTable({ data }: Props) {
 
       {/* TABLE */}
       <div className="overflow-x-auto">
-        <table className="w-full text-sm border border-gray-200">
+        <table className="w-full text-sm border border-gray-300">
           <thead className="bg-gray-100">
             <tr>
               {[

@@ -9,17 +9,13 @@ export default function App() {
   return (
     <BrowserRouter>
       <MainLayout>
-        <h1 className="text-2xl font-semibold mb-4">
-          Sistem Peminjaman Ruangan Kampus
-        </h1>
-
         <Routes>
           <Route path="/" element={<PeminjamanList />} />
           <Route path="/tambah" element={<TambahPeminjaman />} />
           <Route path="/detail/:id" element={<PeminjamanDetail />} />
           <Route path="/edit/:id" element={<EditPeminjaman />} />
+          <Route path="/ruangan" element={<div>Halaman Ruangan</div>} />
         </Routes>
-
       </MainLayout>
     </BrowserRouter>
   )
